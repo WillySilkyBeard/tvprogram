@@ -14,114 +14,17 @@ $opt = [
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
 $d = getdate(); // использовано текущее время
-$endDate = date('t', time()); // последнее число месяца
-
 foreach ( $d as $key => $val )
+	$today = $d[mday];
+$one = $d[mday]+1;
+$two = $d[mday]+2;
+$three = $d[mday]+3;
+$four = $d[mday]+4;
+$five = $d[mday]+5;
+$six = $d[mday]+6;
 
-//день недели
-$today = $d[mday];
-$one = $today+1;
-$two = $today+2;
-$three = $today+3;
-$four = $today+4;
-$five = $today+5;
-$six = $today+6;
+//echo $d[wday];
 
-if ($one < 10) {
-	$one = "0".$one;
-}
-
-if ($two < 10) {
-	$two = "0".$two;
-}
-
-if ($three < 10) {
-	$three = "0".$three;
-}
-
-if ($four < 10) {
-	$four = "0".$four;
-}
-
-if ($five < 10) {
-	$five = "0".$five;
-}
-if ($six < 10) {
-	$six = "0".$six;
-}
-
-//месяц если меньше 10 добавляем 0 перед числом
-$mon = $d[mon];
-$onemon = $d[mon];
-$twomon = $d[mon];
-$threemon = $d[mon];
-$fourmon = $d[mon];
-$fivemon = $d[mon];
-$smon = $d[mon];
-
-// если число больше дней в месяце то..
-if ($one > $endDate) {
-	$onemon = $mon+1;
-	if ($onemon < 10) {
-		$onemon = "0".$onemon;
-	}
-	$one = $one - $endDate;
-	if ($one < 10) {
-		$one = "0".$one;
-	}
-}
-if ($two > $endDate) {
-	$twomon = $mon+1;
-	if ($twomon < 10) {
-		$twomon = "0".$twomon;
-	}
-	$two = $two - $endDate;
-	if ($two < 10) {
-		$two = "0".$two;
-	}
-}
-if ($three > $endDate) {
-	$threemon = $mon+1;
-	if ($threemon < 10) {
-		$threemon = "0".$threemon;
-	}
-	$three = $three - $endDate;
-	if ($three < 10) {
-		$three = "0".$three;
-	}
-}
-if ($four > $endDate) {
-	$fourmon = $mon+1;
-	if ($fourmon < 10) {
-		$fourmon = "0".$fourmon;
-	}
-	$four = $four - $endDate;
-	if ($four < 10) {
-		$four = "0".$four;
-	}
-}
-if ($five > $endDate) {
-	$fivemon = $mon+1;
-	if ($fivemon < 10) {
-		$fivemon = "0".$fivemon;
-	}
-	$five = $five - $endDate;
-	if ($five < 10) {
-		$five = "0".$five;
-	}
-}
-if ($six > $endDate) {
-	$smon = $mon+1;
-	if ($smon < 10) {
-		$smon = "0".$smon;
-	}
-	$six = $six - $endDate;
-	if ($six < 10) {
-		$six = "0".$six;
-	}
-}
-
-// wday - день недели от 0 - 6
 $wday = $d[wday];
 $wone = $d[wday]+1;
 $wtwo = $d[wday]+2;
@@ -280,65 +183,65 @@ function getArticles($page) {
 <head>
 	<meta charset="UTF-8">
 	<title>tv</title>
-	<link rel="stylesheet" type="text/css" href="tv/style.css">    
-</head>
-<body>
-	<div class="tv__menu">
-		<ul>
-			<li><a class="nav-filter-date-link" href="?day=<?="$d[year]-0$mon-$today"?>"><span>Сегодня <span class="nav__day">(<?=$wday." ".$d[mday]?>)</span></span></a></li>
-			<li><a class="nav-filter-date-link" href='?day=<?=($onemon == $d[mon]) ? "$d[year]-0$mon-$one" : "$d[year]-$onemon-$one" ?>'><span><?=$wone?> <span class="nav__day"><?=$one?></span></span></a></li>
-			<li><a class="nav-filter-date-link" href="?day=<?= ($twomon == $d[mon]) ? "$d[year]-0$mon-$two" : "$d[year]-$twomon-$two" ?>"><span><?=$wtwo?> <span class="nav__day"><?=$two?></span></span></a></li>
-			<li><a class="nav-filter-date-link" href="?day=<?= ($threemon == $d[mon]) ? "$d[year]-0$mon-$three" : "$d[year]-$threemon-$three" ?>"><span><?=$wthree?> <span class="nav__day"><?=$three?></span></span></a></li>
-			<li><a class="nav-filter-date-link" href="?day=<?= ($fourmon == $d[mon]) ? "$d[year]-0$mon-$four" : "$d[year]-$fourmon-$four" ?>"><span><?=$wfour?> <span class="nav__day"><?=$four?></span></span></a></li>
-			<li><a class="nav-filter-date-link" href="?day=<?= ($fivemon == $d[mon]) ? "$d[year]-0$mon-$five" : "$d[year]-$fivemon-$five" ?>"><span><?=$wfive?> <span class="nav__day"><?=$five?></span></span></a></li>
-			<li><a class="nav-filter-date-link" href='?day=<?= ($smon == $d[mon]) ? "$d[year]-0$mon-$six" : "$d[year]-$smon-$six" ?>'><span><?=$wsix?> <span class="nav__day"><?=$six?></span></span></a></li>
-		</ul>
-	</div>
+		<link rel="stylesheet" type="text/css" href="tv/style.css">    
+	</head>
+	<body>
+<div class="tv__menu">
+	<ul>
+		<li><a class="nav-filter-date-link" href="get.php?day=<?="$d[year]-0$d[mon]-$today"?>"><span>Сегодня <span class="nav__day">(<?=$wday." ".$d[mday]?>)</span></span></a></li>
+		<li><a class="nav-filter-date-link" href='get.php?day=<?="$d[year]-0$d[mon]-$one"?>'><span><?=$wone?> <span class="nav__day"><?=$d[mday]+1?></span></span></a></li>
+		<li><a class="nav-filter-date-link" href="get.php?day=<?="$d[year]-0$d[mon]-$two"?>"><span><?=$wtwo?> <span class="nav__day"><?=$d[mday]+2?></span></span></a></li>
+		<li><a class="nav-filter-date-link" href="get.php?day=<?="$d[year]-0$d[mon]-$three"?>"><span><?=$wthree?> <span class="nav__day"><?=$d[mday]+3?></span></span></a></li>
+		<li><a class="nav-filter-date-link" href="get.php?day=<?="$d[year]-0$d[mon]-$four"?>"><span><?=$wfour?> <span class="nav__day"><?=$d[mday]+4?></span></span></a></li>
+		<li><a class="nav-filter-date-link" href="get.php?day=<?="$d[year]-0$d[mon]-$five"?>"><span><?=$wfive?> <span class="nav__day"><?=$d[mday]+5?></span></span></a></li>
+		<li><a class="nav-filter-date-link" href="get.php?day=<?="$d[year]-0$d[mon]-$six"?>"><span><?=$wsix?> <span class="nav__day"><?=$d[mday]+6?></span></span></a></li>
+	</ul>
+</div>
+<?php
+echo "<div class='ecentr'>Телепрограмма на $day</div>";
+?>
+<div id="main">
 	<?php
-	echo "<div class='ecentr'>Телепрограмма на <span class='centr_day'>$day</span></div>";
-	?>
-	<div id="main">
-		<?php
-		foreach($articles as $item) {
+	foreach($articles as $item) {
 // соединяем в одну переменную. $item[0] - название каналов. $item[1] - программа передач
-			$content .= $item[0];
-			$content .= $item[1];
-		}
+		$content .= $item[0];
+		$content .= $item[1];
+	}
 
 // запрос проверяем сохраняли ли этот день в БД или нет
-		$sql = "SELECT * FROM tv WHERE name = '$day'";
-		$statement = $pdo->prepare($sql);
-		$statement->execute();
+	$sql = "SELECT * FROM tv WHERE name = '$day'";
+	$statement = $pdo->prepare($sql);
+	$statement->execute();
+	
+	$data = $statement->fetch();
+	$name = $data['name'];
 
-		$data = $statement->fetch();
-		$name = $data['name'];
-
-		if(($name === $day) == false) {
-			echo "Пишем содержимое в БД";
-			echo "<br>";
+	if(($name === $day) == false) {
+		echo "Пишем содержимое в БД";
+		echo "<br>";
 	// Пишем содержимое в БД
-			if($content) {
-				$sql = "INSERT INTO tv (name, content) VALUES (:name, :content)";
-				$statement = $pdo->prepare($sql);
-				$params = ['name' => $day, 'content' => $content];
+		if($content) {
+		$sql = "INSERT INTO tv (name, content) VALUES (:name, :content)";
+		$statement = $pdo->prepare($sql);
+		$params = ['name' => $day, 'content' => $content];
 
-				$statement->execute($params);
+		$statement->execute($params);
 
-			} echo "На этот день еще нет телепрограммы";
+		} echo "На этот день еще нет телепрограммы";
 
-		} else {
+	} else {
 	// показываем на экран
 	// если есть такой день
-			if($data['content']) {
-				echo "<div class='channel'";
-				echo $data['content'];
-				echo "</div>";
-			} else {
-				echo "Еще не добавили телепрограмму, скоро добавим!";
-			}
+		if($data['content']) {
+			echo "<div class='channel'";
+			echo $data['content'];
+			echo "</div>";
+		} else {
+			echo "Еще не добавили телепрограмму, скоро добавим!";
 		}
+	}
 		?>
-	</div>
+</div>
 	<script src="tv/main.js"></script>
 </body>
 </html>

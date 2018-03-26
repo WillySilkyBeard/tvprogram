@@ -1,4 +1,5 @@
-// Удаление элемента с известным родителем
+window.onload = function() {
+	// Удаление элемента с известным родителем
 var title = document.querySelectorAll(".title");
 var fav = document.querySelectorAll(".favorite");
 var channel = document.querySelectorAll(".channel");
@@ -78,4 +79,5 @@ for (var j = 0; j < channel.length; j++) {
 			}
 		}
 	}
+}
 }
