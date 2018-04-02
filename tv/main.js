@@ -35,10 +35,11 @@ var cd = document.querySelector(".centr_day");
 var d = new Date();
 var currentTime = ((d.getHours() < 10) ? '0'+d.getHours() : d.getHours())+':'+d.getMinutes();
 //var currentDay = d.getDate()+'.'+((d.getMonth() < 10) ? '0'+(d.getMonth() + 1) : d.getMonth())+'.'+d.getFullYear();
-var currentDay = d.getFullYear()+'-'+((d.getMonth() < 10) ? '0'+(d.getMonth() + 1) : d.getMonth())+'-'+d.getDate();
+var currentDay = d.getFullYear()+'-'+((d.getMonth() < 10) ? '0'+(d.getMonth() + 1) : d.getMonth())+'-'+((d.getDate() < 10) ? '0'+(d.getDate()) : d.getDate());
 
 console.log(cd.innerHTML);
 console.log(currentTime);
+console.log('currentDay - '+currentDay);
 
 if ("06:35" > currentTime) {
 	console.log("06:35 >")

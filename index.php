@@ -27,6 +27,10 @@ $four = $today+4;
 $five = $today+5;
 $six = $today+6;
 
+if ($today < 10) {
+		$today = "0".$today;
+	}
+
 if ($one < 10) {
 	$one = "0".$one;
 }
@@ -285,7 +289,7 @@ function getArticles($page) {
 <body>
 	<div class="tv__menu">
 		<ul>
-			<li><a class="nav-filter-date-link" href="?day=<?="$d[year]-0$mon-$today"?>"><span>Сегодня <span class="nav__day">(<?=$wday." ".$d[mday]?>)</span></span></a></li>
+			<li><a class="nav-filter-date-link" href="?day=<?="$d[year]-0$mon-$today"?>"><span>Сегодня <span class="nav__day">(<?=$wday." ".(($d[mday] < 10) ? "0".$d[mday] : $d[mday])?>)</span></span></a></li>
 			<li><a class="nav-filter-date-link" href='?day=<?=($onemon == $d[mon]) ? "$d[year]-0$mon-$one" : "$d[year]-$onemon-$one" ?>'><span><?=$wone?> <span class="nav__day"><?=$one?></span></span></a></li>
 			<li><a class="nav-filter-date-link" href="?day=<?= ($twomon == $d[mon]) ? "$d[year]-0$mon-$two" : "$d[year]-$twomon-$two" ?>"><span><?=$wtwo?> <span class="nav__day"><?=$two?></span></span></a></li>
 			<li><a class="nav-filter-date-link" href="?day=<?= ($threemon == $d[mon]) ? "$d[year]-0$mon-$three" : "$d[year]-$threemon-$three" ?>"><span><?=$wthree?> <span class="nav__day"><?=$three?></span></span></a></li>
